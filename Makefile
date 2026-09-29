@@ -1,15 +1,15 @@
-CORE_PATH ?= ../Fusion
+FUSION_INCLUDE_CONFIG := fusion-include
 NEEDS_CORE := $(filter-out clean,$(or $(MAKECMDGOALS),all))
 
 ifneq ($(NEEDS_CORE),)
-  ifeq ($(wildcard $(CORE_PATH)/include/modules_flags.mk),)
-    $(error Nao achei $(CORE_PATH)/include/modules_flags.mk. Use: make CORE_PATH=/caminho/do/Fusion)
+  ifeq ($(wildcard $(FUSION_INCLUDE_CONFIG)/modules_flags.mk),)
+    $(error Nao achei $(FUSION_INCLUDE_CONFIG)/modules_flags.mk. Use: make CORE_PATH=/caminho/do/Fusion)
   endif
-  include $(CORE_PATH)/include/modules_flags.mk
+  include $(FUSION_INCLUDE_CONFIG)/modules_flags.mk
 endif
 
 CC      = gcc
-CFLAGS  = -O2 -Wall $(FUSION_MODULE_FLAG) -Wextra -I$(CORE_PATCH)/include
+CFLAGS  = -O2 -Wall $(FUSION_MODULE_FLAG) -Wextra -I$(FUSION_INCLUDE_CONFIG)
 SRC_DIR = src
 OUT_BACKEND = fusbackendX86.a
 EXAMPLES_SRC = exemples
@@ -35,6 +35,7 @@ $(OUT_BACKEND): $(BACKEND_OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
+	rm -rf $(FUSION_INCLUDE_CONFIG)
 	rm -f $(BACKEND_OBJ) $(OUT_BACKEND)
 
 example: $(OUT_BACKEND)

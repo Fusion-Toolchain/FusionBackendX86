@@ -71,14 +71,10 @@ Hoje o Core só aceita backend via **link estático**. Passe o `.a` com `STATICS
 ```bash
 # 1. compile este backend
 make
-
 # 2. compile o Core linkando este backend estaticamente
-make -C <CORE_PATCH> STATICS_BACKENDS=$(pwd)/fusbackendX86.a
-
+make -C <CORE_PATCH> STATICS_BACKENDS=$(shell pwd)/fusbackendX86.a
 # forma genérica pedida:
 make STATICS_BACKENDS=patch_backend
-# exemplo real:
-# make -C ../FusionCore STATICS_BACKENDS=/home/ewerton-pc/Projetos/FusionBackendX86/fusbackendX86.a
 ```
 
 O `Makefile` já tem um atalho (ajuste `CORE_PATCH=`):
