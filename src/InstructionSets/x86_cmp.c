@@ -22,7 +22,7 @@
 bool X86_CaseMountCmpRegReg(X86BackendContext* backend_ctx)
 {
     const FusHidrNode_t* mir_node = backend_ctx->hidr;
-    x86Instruction_t* mount_instr = backend_ctx->encoder;
+    x86Instruction* mount_instr = backend_ctx->encoder;
 
     if (mir_node->dst.type != HIDR_OPERAND_TYPE_REG) return false;
     if (mir_node->src.type != HIDR_OPERAND_TYPE_REG) return false;
@@ -53,7 +53,7 @@ bool X86_CaseMountCmpRegReg(X86BackendContext* backend_ctx)
 bool X86_CaseMountCmpRegImm(X86BackendContext* backend_ctx)
 {
     const FusHidrNode_t* mir_node = backend_ctx->hidr;
-    x86Instruction_t* mount_instr = backend_ctx->encoder;
+    x86Instruction* mount_instr = backend_ctx->encoder;
 
     if (mir_node->dst.type != HIDR_OPERAND_TYPE_REG) return false;
     if (mir_node->src.type != HIDR_OPERAND_TYPE_IMM) return false;

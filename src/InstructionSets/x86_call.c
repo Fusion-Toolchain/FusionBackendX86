@@ -33,7 +33,7 @@
 bool X86_CaseMountCallReg(X86BackendContext *ctx)
 {
     const FusHidrNode_t *mir = ctx->hidr;
-    x86Instruction_t *enc    = ctx->encoder;
+    x86Instruction *enc    = ctx->encoder;
 
     if (mir->dst.type != HIDR_OPERAND_TYPE_REG) return false;
 
@@ -61,7 +61,7 @@ bool X86_CaseMountCallReg(X86BackendContext *ctx)
 // ---------------------------------------------------------------------------
 bool X86_CaseMountCallRel32(X86BackendContext *ctx)
 {
-    x86Instruction_t *enc = ctx->encoder;
+    x86Instruction *enc = ctx->encoder;
 
     enc->opcode.opcode[0]   = 0xE8;
     enc->opcode.opcode_size = 1;

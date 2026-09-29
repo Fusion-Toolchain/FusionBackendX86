@@ -43,7 +43,7 @@ struct CopyPartMemory {
     size_t         src_size;
 };
 
-typedef bool (*EncodeStep)(x86Instruction_t*, struct CopyPartMemory*);
+typedef bool (*EncodeStep)(x86Instruction*, struct CopyPartMemory*);
 
 typedef struct {
     EncodeStep steps[8];
@@ -73,7 +73,7 @@ static inline bool CopyOffsetDataU8(struct CopyPartMemory *m, uint8_t v)
 /* ---------------------------------------------------------------------------
  * Encode steps (one per field)
  * ------------------------------------------------------------------------ */
-static bool x86Bytes_MountOpcode(x86Instruction_t *i, struct CopyPartMemory *m)
+static bool x86Bytes_MountOpcode(x86Instruction *i, struct CopyPartMemory *m)
 {
     m->src = i->opcode.opcode;
     m->src_size = i->opcode.opcode_size;
@@ -90,14 +90,14 @@ static inline uint8_t MountModRM(x86ModRm_t *modrm)
     return (modrm->mod << 6) | (modrm->reg << 3) | modrm->rm;
 }
 
-static bool x86Bytes_MountModRM(x86Instruction_t *i, struct CopyPartMemory *m)
+static bool x86Bytes_MountModRM(x86Instruction *i, struct CopyPartMemory *m)
 {
     if (!i->has_modrm) return true;
     uint8_t modrm = MountModRM(&i->modrm);
     return CopyOffsetDataU8(m, modrm);
 }
 
-static bool x86Bytes_MountImm(x86Instruction_t *i, struct CopyPartMemory *m)
+static bool x86Bytes_MountImm(x86Instruction *i, struct CopyPartMemory *m)
 {
     if (!i->has_imm) return true;
     m->src = (unsigned char*)&i->imm.value;
@@ -105,7 +105,7 @@ static bool x86Bytes_MountImm(x86Instruction_t *i, struct CopyPartMemory *m)
     return CopyOffsetData(m);
 }
 
-static bool x86Bytes_MountPrefix(x86Instruction_t *i, struct CopyPartMemory *m)
+static bool x86Bytes_MountPrefix(x86Instruction *i, struct CopyPartMemory *m)
 {
     if (!i->has_prefix) return true;
     m->src = i->prefix.prefix;
@@ -118,14 +118,14 @@ static inline uint8_t MountSIB(x86Sib_t *sib)
     return (sib->scale << 6) | (sib->index << 3) | sib->base;
 }
 
-static bool x86Bytes_MountSIB(x86Instruction_t *i, struct CopyPartMemory *m)
+static bool x86Bytes_MountSIB(x86Instruction *i, struct CopyPartMemory *m)
 {
     if (!i->has_sib) return true;
     uint8_t sib = MountSIB(&i->sib);
     return CopyOffsetDataU8(m, sib);
 }
 
-static bool x86Bytes_MountDisp(x86Instruction_t *i, struct CopyPartMemory *m)
+static bool x86Bytes_MountDisp(x86Instruction *i, struct CopyPartMemory *m)
 {
     if (!i->has_disp) return true;
     m->src = (unsigned char*)&i->disp.value;
@@ -133,7 +133,7 @@ static bool x86Bytes_MountDisp(x86Instruction_t *i, struct CopyPartMemory *m)
     return CopyOffsetData(m);
 }
 
-static bool x86Bytes_MountRex(x86Instruction_t *i, struct CopyPartMemory *m)
+static bool x86Bytes_MountRex(x86Instruction *i, struct CopyPartMemory *m)
 {
     if (!i->has_rex) return true;
     uint8_t rex = 0x40 | (i->rex.w << 3) | (i->rex.r << 2) | (i->rex.x << 1) | (i->rex.b << 0);
@@ -159,7 +159,7 @@ static EncodePipeline pipeline_funcs = {
 /* ---------------------------------------------------------------------------
  * Public API: mount instruction bytes into buffer
  * ------------------------------------------------------------------------ */
-bool X86_MountCodeBytes(x86Instruction_t *instr, size_t *offset, uint8_t *buffer, size_t buffer_size)
+bool X86_MountCodeBytes(x86Instruction *instr, size_t *offset, uint8_t *buffer, size_t buffer_size)
 {
     if (!instr || !buffer || !offset) return false;
 

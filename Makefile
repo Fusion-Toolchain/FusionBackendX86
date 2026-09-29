@@ -17,6 +17,8 @@ EXAMPLES_SRC = exemples
 BACKEND_SRC := \
 	$(SRC_DIR)/x86_pipeline.c \
 	$(SRC_DIR)/x86_interface.c \
+	$(SRC_DIR)/x86_linker.c \
+	$(SRC_DIR)/x86_hidrmount.c \
 	$(SRC_DIR)/InstructionSets/x86_mov.c \
 	$(SRC_DIR)/InstructionSets/x86_add.c \
 	$(SRC_DIR)/InstructionSets/x86_call.c \

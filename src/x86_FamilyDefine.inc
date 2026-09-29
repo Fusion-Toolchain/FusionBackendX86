@@ -46,17 +46,14 @@ static X86FamilyRule_t cmp_rule[] = {
 static X86FamilyRule_t lea_rules[] = {
     {.builder = X86_CaseMountLeaRegMem, .dst_type = HIDR_OPERAND_TYPE_REG, .src_type = HIDR_OPERAND_TYPE_MEM_REF},
 };
-
 static X86FamilyRule_t call_rules[] = {
     [0] = {.builder = X86_CaseMountCallReg,   .dst_type = HIDR_OPERAND_TYPE_REG, .src_type = HIDR_OPERAND_TYPE_NONE},
     [1] = {.builder = X86_CaseMountCallRel32, .dst_type = HIDR_OPERAND_TYPE_SYM, .src_type = HIDR_OPERAND_TYPE_NONE},
 };
-
 static X86FamilyRule_t push_rules[] = {
     [0] = {.builder = X86_CaseMountPushReg, .dst_type = HIDR_OPERAND_TYPE_REG, .src_type = HIDR_OPERAND_TYPE_NONE},
     [1] = {.builder = X86_CaseMountPushImm, .dst_type = HIDR_OPERAND_TYPE_IMM, .src_type = HIDR_OPERAND_TYPE_NONE},
 };
-
 static X86FamilyRule_t pop_rules[] = {
     [0] = {.builder = X86_CaseMountPopReg, .dst_type = HIDR_OPERAND_TYPE_REG, .src_type = HIDR_OPERAND_TYPE_NONE},
     [1] = {.builder = X86_CaseMountPopImm, .dst_type = HIDR_OPERAND_TYPE_IMM, .src_type = HIDR_OPERAND_TYPE_NONE},

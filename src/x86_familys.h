@@ -27,7 +27,7 @@
  * Backend context passed to each builder.
  */
 typedef struct {
-    x86Instruction_t              *encoder;
+    x86Instruction              *encoder;
     const FusHidrNode_t           *hidr;
     FusBackendGenerateDataBlock_t *block;
     FusBackendApi_t               *Api;
@@ -37,13 +37,11 @@ typedef struct {
  * Family rule: maps (dst_type, src_type) to builder.
  */
 typedef bool (*X86FmailyRuleFunc_t)(X86BackendContext*);
-
 typedef struct {
     FusHidrOperandType_t src_type;
     FusHidrOperandType_t dst_type;
     X86FmailyRuleFunc_t  builder;
 } X86FamilyRule_t;
-
 typedef struct {
     X86FamilyRule_t   *rules;
     size_t             rule_count;

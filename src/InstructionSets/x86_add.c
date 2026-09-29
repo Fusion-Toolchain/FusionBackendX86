@@ -22,7 +22,7 @@
 bool X86_CaseMountAddRegReg(X86BackendContext* backend_ctx)
 {
     const FusHidrNode_t* mir_node = backend_ctx->hidr;
-    x86Instruction_t* mount_instr = backend_ctx->encoder;
+    x86Instruction* mount_instr = backend_ctx->encoder;
 
     size_t src_reg = X86_MapVirtualReg(FUS_HIDR_REG_INTERNAL(mir_node->src.data.reg));
     size_t dst_reg = X86_MapVirtualReg(FUS_HIDR_REG_INTERNAL(mir_node->dst.data.reg));
@@ -51,7 +51,7 @@ bool X86_CaseMountAddRegReg(X86BackendContext* backend_ctx)
 bool X86_CaseMountAddImmReg(X86BackendContext* backend_ctx)
 {
     const FusHidrNode_t* mir_node = backend_ctx->hidr;
-    x86Instruction_t* mount_instr = backend_ctx->encoder;
+    x86Instruction* mount_instr = backend_ctx->encoder;
 
     size_t dst_reg = X86_MapVirtualReg(FUS_HIDR_REG_INTERNAL(mir_node->dst.data.reg));
     if (dst_reg == (size_t)-1) return false;

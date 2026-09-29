@@ -27,7 +27,7 @@
 bool X86_CaseMountSyscall(X86BackendContext *ctx)
 {
     const FusHidrNode_t *mir = ctx->hidr;
-    x86Instruction_t *enc    = ctx->encoder;
+    x86Instruction *enc    = ctx->encoder;
 
     if (mir->dst.type != HIDR_OPERAND_TYPE_NONE) return false;
     if (mir->src.type != HIDR_OPERAND_TYPE_NONE) return false;

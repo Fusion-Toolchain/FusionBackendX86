@@ -30,7 +30,7 @@
 bool X86_CaseMountLeaRegMem(X86BackendContext *ctx)
 {
     const FusHidrNode_t *mir = ctx->hidr;
-    x86Instruction_t *enc    = ctx->encoder;
+    x86Instruction *enc    = ctx->encoder;
 
     // Validate operands
     if (mir->dst.type != HIDR_OPERAND_TYPE_REG)   return false;

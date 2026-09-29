@@ -34,7 +34,7 @@
 bool X86_CaseMountPushReg(X86BackendContext *ctx)
 {
     const FusHidrNode_t *mir = ctx->hidr;
-    x86Instruction_t *enc    = ctx->encoder;
+    x86Instruction *enc    = ctx->encoder;
 
     if (mir->dst.type != HIDR_OPERAND_TYPE_REG)  return false;
     if (mir->src.type != HIDR_OPERAND_TYPE_NONE) return false;
@@ -59,7 +59,7 @@ bool X86_CaseMountPushReg(X86BackendContext *ctx)
 bool X86_CaseMountPushImm(X86BackendContext *ctx)
 {
     const FusHidrNode_t *mir = ctx->hidr;
-    x86Instruction_t *enc    = ctx->encoder;
+    x86Instruction *enc    = ctx->encoder;
 
     if (mir->dst.type != HIDR_OPERAND_TYPE_IMM)  return false;
     if (mir->src.type != HIDR_OPERAND_TYPE_NONE) return false;
@@ -88,7 +88,7 @@ bool X86_CaseMountPushImm(X86BackendContext *ctx)
 bool X86_CaseMountPopReg(X86BackendContext *ctx)
 {
     const FusHidrNode_t *mir = ctx->hidr;
-    x86Instruction_t *enc    = ctx->encoder;
+    x86Instruction *enc    = ctx->encoder;
 
     if (mir->dst.type != HIDR_OPERAND_TYPE_REG)  return false;
     if (mir->src.type != HIDR_OPERAND_TYPE_NONE) return false;
@@ -113,7 +113,7 @@ bool X86_CaseMountPopReg(X86BackendContext *ctx)
 bool X86_CaseMountPopImm(X86BackendContext *ctx)
 {
     const FusHidrNode_t *mir = ctx->hidr;
-    x86Instruction_t *enc    = ctx->encoder;
+    x86Instruction *enc    = ctx->encoder;
 
     if (mir->dst.type != HIDR_OPERAND_TYPE_IMM)  return false;
     if (mir->src.type != HIDR_OPERAND_TYPE_NONE) return false;

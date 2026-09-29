@@ -18,7 +18,6 @@
 
 #ifndef X86_BACKEND_TYPES
 #define X86_BACKEND_TYPES
-
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -79,34 +78,28 @@ typedef struct {
     uint8_t opcode[3];
     uint8_t opcode_size;
 } x86Opcode_t;
-
 typedef struct {
     uint8_t mod; // 2 bits
     uint8_t reg; // 3 bits
     uint8_t rm;  // 3 bits
 } x86ModRm_t;
-
 typedef struct {
     uint8_t prefix[4];
     uint8_t prefix_size;
 } x86Prefix_t;
-
 typedef struct {
     uint64_t value;
     uint8_t  size; // 1,2,4,8
 } x86Imm_t;
-
 typedef struct {
     uint8_t scale; // 2 bits
     uint8_t index; // 3 bits
     uint8_t base;  // 3 bits
 } x86Sib_t;
-
 typedef struct {
     int32_t value;
     uint8_t size; // 1 or 4
 } x86Disp_t;
-
 typedef struct {
     uint8_t w : 1; // 64-bit operand
     uint8_t r : 1; // extension of ModRM.reg
@@ -132,6 +125,5 @@ typedef struct {
     bool has_sib;
     bool has_disp;
     bool has_rex;
-} x86Instruction_t;
-
+} x86Instruction;
 #endif

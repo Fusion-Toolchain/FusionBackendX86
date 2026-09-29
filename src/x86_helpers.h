@@ -102,10 +102,9 @@ static inline size_t X86_MapVirtualReg(const HidrRegistre reg)
 /* ============================================================================
  * Common REX helpers (used by InstructionSets to avoid duplication)
  * ========================================================================= */
-static inline void X86_SetRexW(x86Instruction_t *instr, bool is64)
+static inline void X86_SetRexW(x86Instruction *instr, bool is64)
 {
     instr->rex.w = is64 ? 1 : 0;
     if (is64) instr->has_rex = true;
 }
-
 #endif

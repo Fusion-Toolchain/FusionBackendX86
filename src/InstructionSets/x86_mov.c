@@ -42,7 +42,7 @@
 bool X86_CaseMountMovImmReg(X86BackendContext *backend_ctx)
 {
     const FusHidrNode_t *mir = backend_ctx->hidr;
-    x86Instruction_t *enc    = backend_ctx->encoder;
+    x86Instruction *enc    = backend_ctx->encoder;
 
     FusHidrImmSize_t imm_type = mir->src.data.imm.size;
     size_t imm_size = X86_CalMirImmSize(imm_type);
@@ -82,7 +82,7 @@ bool X86_CaseMountMovImmReg(X86BackendContext *backend_ctx)
 bool X86_CaseMountMovRegReg(X86BackendContext *backend_ctx)
 {
     const FusHidrNode_t *mir = backend_ctx->hidr;
-    x86Instruction_t *enc    = backend_ctx->encoder;
+    x86Instruction *enc    = backend_ctx->encoder;
 
     size_t dst = X86_MapVirtualReg(FUS_HIDR_REG_INTERNAL(mir->dst.data.reg));
     size_t src = X86_MapVirtualReg(FUS_HIDR_REG_INTERNAL(mir->src.data.reg));
@@ -112,7 +112,7 @@ bool X86_CaseMountMovRegReg(X86BackendContext *backend_ctx)
 bool X86_CaseMountMovMemImm(X86BackendContext *backend_ctx)
 {
     const FusHidrNode_t *mir = backend_ctx->hidr;
-    x86Instruction_t *enc    = backend_ctx->encoder;
+    x86Instruction *enc    = backend_ctx->encoder;
 
     size_t base = X86_MapVirtualReg(FUS_HIDR_REG_INTERNAL(mir->dst.data.memory_ref.base));
     if (base == (size_t)-1) return false;
@@ -165,7 +165,7 @@ bool X86_CaseMountMovMemImm(X86BackendContext *backend_ctx)
 bool X86_CaseMountMovRegMem(X86BackendContext *backend_ctx)
 {
     const FusHidrNode_t *mir = backend_ctx->hidr;
-    x86Instruction_t *enc    = backend_ctx->encoder;
+    x86Instruction *enc    = backend_ctx->encoder;
 
     if (mir->dst.type != HIDR_OPERAND_TYPE_REG) return false;
     if (mir->src.type != HIDR_OPERAND_TYPE_MEM_REF) return false;
@@ -213,7 +213,7 @@ bool X86_CaseMountMovRegMem(X86BackendContext *backend_ctx)
 bool X86_CaseMountMovSymReg(X86BackendContext *backend_ctx)
 {
     const FusHidrNode_t *mir = backend_ctx->hidr;
-    x86Instruction_t *enc    = backend_ctx->encoder;
+    x86Instruction *enc    = backend_ctx->encoder;
     const char *sym = mir->src.data.sym.name;
 
     size_t dst = X86_MapVirtualReg(FUS_HIDR_REG_INTERNAL(mir->dst.data.reg));

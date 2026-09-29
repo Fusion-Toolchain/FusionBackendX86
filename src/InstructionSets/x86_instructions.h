@@ -32,6 +32,8 @@ bool X86_CaseMountMovRegMem(X86BackendContext *ctx);
 /* ALU */
 bool X86_CaseMountAddRegReg(X86BackendContext *ctx);
 bool X86_CaseMountAddImmReg(X86BackendContext *ctx);
+
+/* Aritimetic */
 bool X86_CaseMountCmpRegReg(X86BackendContext *ctx);
 bool X86_CaseMountCmpRegImm(X86BackendContext *ctx);
 
